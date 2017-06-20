@@ -1,0 +1,2180 @@
+{
+  "aesImageUrl": "https://api.ibm.com/apie/run/aes_api/attachments/imagefile/268",
+  "apiBaseUrl": "https://ibm-key-protect.edge.bluemix.net/api/v2",
+  "basePath": "/api/v2",
+  "bluemixList": [
+    "Security"
+  ],
+  "callMethod": "PROXY",
+  "companyName": "IBM",
+  "created": 1480633359000,
+  "description": "IBM Key Protect helps you provision encrypted keys for apps across IBM Bluemix. As you manage the lifecycle of your keys, you can benefit from knowing that your keys are secured by cloud-based hardware security modules (HSMs) that protect against theft of information. You can use the Key Protect API to store, generate, and retrieve your secret key material. Secrets can be any type of data that you would like to protect with the service, for example RSA keys or certificates. ",
+  "docOnly": true,
+  "dynamicallyBound": false,
+  "enableTryItOut": true,
+  "endpoints": [
+    {
+      "apiGroupNameID": 158,
+      "apiNameSet": "IBM_Key_Protect_API",
+      "codeSnippets": [
+        {
+          "id": 114564,
+          "isAuto": true,
+          "languageTitle": "Go",
+          "languageType": "go",
+          "template": "package main\n\nimport (\n\t\"fmt\"\n\t\"net/http\"\n\t\"io/ioutil\"\n)\n\nfunc main() {\n\n\turl := \"https://api.ibm.com/api/v2/secrets?limit=0&offset=0\"\n\n\treq, _ := http.NewRequest(\"GET\", url, nil)\n\n\treq.Header.Add(\"bluemix-org\", \"string\")\n\treq.Header.Add(\"correlation-id\", \"string\")\n\treq.Header.Add(\"authorization\", \"string\")\n\treq.Header.Add(\"bluemix-space\", \"string\")\n\treq.Header.Add(\"content-type\", \"application/vnd.ibm.kms.secret+json\")\n\n\tres, _ := http.DefaultClient.Do(req)\n\n\tdefer res.Body.Close()\n\tbody, _ := ioutil.ReadAll(res.Body)\n\n\tfmt.Println(res)\n\tfmt.Println(string(body))\n\n}"
+        },
+        {
+          "id": 114572,
+          "isAuto": true,
+          "languageTitle": "Java",
+          "languageType": "java",
+          "template": "HttpResponse<String> response = Unirest.get(\"https://api.ibm.com/api/v2/secrets?limit=0&offset=0\")\n  .header(\"bluemix-org\", \"string\")\n  .header(\"correlation-id\", \"string\")\n  .header(\"authorization\", \"string\")\n  .header(\"bluemix-space\", \"string\")\n  .header(\"content-type\", \"application/vnd.ibm.kms.secret+json\")\n  .asString();"
+        },
+        {
+          "id": 114571,
+          "isAuto": true,
+          "languageTitle": "JavaScript + jQuery",
+          "languageType": "javascript_jquery",
+          "template": "var settings = {\n  \"async\": true,\n  \"crossDomain\": true,\n  \"url\": \"https://api.ibm.com/api/v2/secrets?limit=0&offset=0\",\n  \"method\": \"GET\",\n  \"headers\": {\n    \"bluemix-org\": \"string\",\n    \"correlation-id\": \"string\",\n    \"authorization\": \"string\",\n    \"bluemix-space\": \"string\",\n    \"content-type\": \"application/vnd.ibm.kms.secret+json\"\n  }\n}\n\n$.ajax(settings).done(function (response) {\n  console.log(response);\n});"
+        },
+        {
+          "id": 114568,
+          "isAuto": true,
+          "languageTitle": "Node",
+          "languageType": "node",
+          "template": "var http = require(\"https\");\n\nvar options = {\n  \"method\": \"GET\",\n  \"hostname\": \"api.ibm.com\",\n  \"port\": null,\n  \"path\": \"/api/v2/secrets?limit=0&offset=0\",\n  \"headers\": {\n    \"bluemix-org\": \"string\",\n    \"correlation-id\": \"string\",\n    \"authorization\": \"string\",\n    \"bluemix-space\": \"string\",\n    \"content-type\": \"application/vnd.ibm.kms.secret+json\"\n  }\n};\n\nvar req = http.request(options, function (res) {\n  var chunks = [];\n\n  res.on(\"data\", function (chunk) {\n    chunks.push(chunk);\n  });\n\n  res.on(\"end\", function () {\n    var body = Buffer.concat(chunks);\n    console.log(body.toString());\n  });\n});\n\nreq.end();"
+        },
+        {
+          "id": 114567,
+          "isAuto": true,
+          "languageTitle": "Python + Requests",
+          "languageType": "python_requests",
+          "template": "import requests\n\nurl = \"https://api.ibm.com/api/v2/secrets\"\n\nquerystring = {\"limit\":\"0\",\"offset\":\"0\"}\n\nheaders = {\n    'bluemix-org': \"string\",\n    'correlation-id': \"string\",\n    'authorization': \"string\",\n    'bluemix-space': \"string\",\n    'content-type': \"application/vnd.ibm.kms.secret+json\"\n    }\n\nresponse = requests.request(\"GET\", url, headers=headers, params=querystring)\n\nprint(response.text)"
+        },
+        {
+          "id": 114566,
+          "isAuto": true,
+          "languageTitle": "Shell + curl",
+          "languageType": "shell_curl",
+          "template": "curl --request GET \\\n  --url 'https://api.ibm.com/api/v2/secrets?limit=0&offset=0' \\\n  --header 'authorization: string' \\\n  --header 'bluemix-org: string' \\\n  --header 'bluemix-space: string' \\\n  --header 'content-type: application/vnd.ibm.kms.secret+json' \\\n  --header 'correlation-id: string'"
+        }
+      ],
+      "customHeaders": [
+        {
+          "description": "Your Bluemix access token.",
+          "id": 91813,
+          "name": "Authorization",
+          "required": true,
+          "type": "HEADER"
+        },
+        {
+          "description": "The v4 UUID used to correlate and track transactions.",
+          "id": 91816,
+          "name": "Correlation-Id",
+          "required": false,
+          "type": "HEADER"
+        },
+        {
+          "description": "The Bluemix space GUID.",
+          "id": 91814,
+          "name": "Bluemix-Space",
+          "required": true,
+          "type": "HEADER"
+        },
+        {
+          "description": "The Bluemix organization GUID.",
+          "id": 91815,
+          "name": "Bluemix-Org",
+          "required": true,
+          "type": "HEADER"
+        }
+      ],
+      "description": "<p>Retrieves a collection of secrets that can be paged through.</p><p><strong>Note:</strong> <code>GET /secrets</code> will not return a secret in the response body. You can retrieve the secret payload with a subsequent <code>GET /secrets/{id}</code> request.</p>",
+      "globalAuthOverride": false,
+      "httpMethod": "GET",
+      "id": 15175,
+      "name": "getSecrets",
+      "path": "/secrets",
+      "queryOrFormParameters": [
+        {
+          "description": "The maximum number of secrets to retrieve.",
+          "id": 91817,
+          "in": "query",
+          "name": "limit",
+          "required": false,
+          "type": "INTEGER"
+        },
+        {
+          "description": "The number of secrets to skip.",
+          "id": 91818,
+          "in": "query",
+          "name": "offset",
+          "required": false,
+          "type": "INTEGER"
+        }
+      ],
+      "requestBody": {
+        "code": 0
+      },
+      "requestContentTypes": [
+        ""
+      ],
+      "responseBody": {
+        "code": 200,
+        "description": "Successfully retrieved secrets.",
+        "name": "root",
+        "rootParameter": {
+          "childParameters": [
+            {
+              "childParameters": [
+                {
+                  "description": "Up to 30 tags can be created. Tags can be between 2-30 characters, including spaces. Special characters not permitted are angled bracket, comma, colon, ampersand, and the vertical pipe character (|).",
+                  "name": "tags",
+                  "required": false,
+                  "type": "ARRAY"
+                },
+                {
+                  "name": "deletedBy",
+                  "required": true,
+                  "type": "STRING"
+                },
+                {
+                  "name": "expirationDate",
+                  "required": true,
+                  "type": "STRING"
+                },
+                {
+                  "description": "The date the secret material was destroyed.  The date is specified by RFC3339.",
+                  "name": "deletionDate",
+                  "required": true,
+                  "type": "STRING"
+                },
+                {
+                  "description": "Key state based on NIST SP 800-57",
+                  "name": "state",
+                  "required": true,
+                  "type": "STRING"
+                },
+                {
+                  "description": "Provide the secret material or else leave blank so that the service generates one based on the specified algorithmType and algorithmMetadata fields.",
+                  "name": "payload",
+                  "required": true,
+                  "type": "STRING"
+                },
+                {
+                  "description": "When an activationDate is included, the secret is created in the Pre-activation state before transitioning to the Activation state on the specified date. If no date is specified, the secret is activated immediately.  The date is specified by RFC3339.",
+                  "name": "activationDate",
+                  "required": true,
+                  "type": "STRING"
+                },
+                {
+                  "description": "A code indicating the reason the secret is not in the activation state.  The code can be translated by using one of the administration REST APIs.",
+                  "name": "nonactiveStateReason",
+                  "required": true,
+                  "type": "INTEGER"
+                },
+                {
+                  "description": "Specifies the MIME type that represents the secret resource.  Currently, only the default is supported.",
+                  "name": "type",
+                  "required": true,
+                  "type": "STRING"
+                },
+                {
+                  "name": "deleted",
+                  "required": true,
+                  "type": "BOOLEAN"
+                },
+                {
+                  "description": "The date is specified by RFC3339 and updated when any part of the secret metadata is modified.",
+                  "name": "lastUpdateDate",
+                  "required": true,
+                  "type": "STRING"
+                },
+                {
+                  "description": "The secret identifier used to uniquely identify the resource.",
+                  "name": "id",
+                  "required": true,
+                  "type": "STRING"
+                },
+                {
+                  "name": "creationDate",
+                  "required": true,
+                  "type": "STRING"
+                },
+                {
+                  "description": "Algorithm type to be used when generating the secret. Currently, AES is supported.",
+                  "name": "algorithmType",
+                  "required": true,
+                  "type": "STRING"
+                },
+                {
+                  "childParameters": [
+                    {
+                      "name": "name",
+                      "required": true,
+                      "type": "STRING"
+                    },
+                    {
+                      "name": "value",
+                      "required": true,
+                      "type": "STRING"
+                    }
+                  ],
+                  "name": "algorithmMetadata",
+                  "required": false,
+                  "type": "ARRAY"
+                },
+                {
+                  "description": "The unique identifier for the resource that created the secret",
+                  "name": "createdBy",
+                  "required": true,
+                  "type": "STRING"
+                },
+                {
+                  "description": "Text field to provide a more detailed description of the secret. The maximum length is 240 characters.",
+                  "name": "description",
+                  "required": true,
+                  "type": "STRING"
+                },
+                {
+                  "description": "A human-readable, non-unique alias to assign to your secret.",
+                  "name": "name",
+                  "required": true,
+                  "type": "STRING"
+                }
+              ],
+              "name": "resources",
+              "required": true,
+              "type": "ARRAY"
+            },
+            {
+              "childParameters": [
+                {
+                  "name": "collectionType",
+                  "required": true,
+                  "type": "STRING"
+                },
+                {
+                  "name": "collectionTotal",
+                  "required": true,
+                  "type": "INTEGER"
+                }
+              ],
+              "name": "metadata",
+              "required": true,
+              "type": "ARRAY"
+            }
+          ],
+          "name": "root",
+          "required": false
+        }
+      },
+      "responseCodes": [
+        {
+          "code": "200",
+          "id": 57239,
+          "message": "The secret collection was successfully retrieved.",
+          "responseBody": {
+            "code": 0,
+            "rootParameter": {
+              "childParameters": [
+                {
+                  "childParameters": [
+                    {
+                      "description": "Up to 30 tags can be created. Tags can be between 2-30 characters, including spaces. Special characters not permitted include the angled bracket, comma, colon, ampersand, and vertical pipe character (|).",
+                      "name": "tags",
+                      "required": false,
+                      "type": "ARRAY"
+                    },
+                    {
+                      "description": "The date the secret material expires.",
+                      "name": "expirationDate",
+                      "required": false,
+                      "type": "STRING"
+                    },
+                    {
+                      "description": "The unique identifier for the resource that deleted the secret.",
+                      "name": "deletedBy",
+                      "required": false,
+                      "type": "STRING"
+                    },
+                    {
+                      "description": "The date the secret material was destroyed. The date is specified by RFC3339.",
+                      "name": "deletionDate",
+                      "required": false,
+                      "type": "STRING"
+                    },
+                    {
+                      "description": "A boolean value that determines whether the key has been deleted.",
+                      "name": "deleted",
+                      "required": false,
+                      "type": "BOOLEAN"
+                    },
+                    {
+                      "description": "The key state based on NIST SP 800-57. States are integers and correspond to the Pre-activation = 0, Active = 1, Deactivated = 3, and Destroyed = 5 values.",
+                      "name": "state",
+                      "required": false,
+                      "type": "INTEGER"
+                    },
+                    {
+                      "description": "Provide the secret material or else leave blank so that Key Protect may generate one for you based on the specified algorithmType and algorithmMetadata fields.",
+                      "name": "payload ",
+                      "required": false,
+                      "type": "STRING"
+                    },
+                    {
+                      "description": "Specifies the MIME type that represents the secret resource. Currently, only the default is supported.",
+                      "name": "type",
+                      "required": false,
+                      "type": "STRING"
+                    },
+                    {
+                      "description": "The date is specified by RFC3339 and updated when any part of the secret metadata is modified.",
+                      "name": "lastUpdateDate",
+                      "required": false,
+                      "type": "STRING"
+                    },
+                    {
+                      "description": "The secret identifier used to uniquely identify the resource.",
+                      "name": "id",
+                      "required": false,
+                      "type": "STRING"
+                    },
+                    {
+                      "description": "The date the secret material was created.",
+                      "name": "creationDate",
+                      "required": false,
+                      "type": "STRING"
+                    },
+                    {
+                      "description": "The unique identifier for the resource that created the secret.",
+                      "name": "createdBy",
+                      "required": false,
+                      "type": "STRING"
+                    },
+                    {
+                      "description": "The algorithm type to be used when generating the secret. Currently, AES is supported.",
+                      "name": "algorithmType",
+                      "required": false,
+                      "type": "STRING"
+                    },
+                    {
+                      "description": "The metadata for the key algorithm.",
+                      "name": "algorithmMetadata",
+                      "required": false,
+                      "type": "OBJECT"
+                    },
+                    {
+                      "description": "A text field used to provide a more detailed description of the secret. The maximum length is 240 characters.",
+                      "name": "description",
+                      "required": false,
+                      "type": "STRING"
+                    },
+                    {
+                      "description": "A human-readable, non-unique alias to assign to your secret.",
+                      "name": "name",
+                      "required": false,
+                      "type": "STRING"
+                    }
+                  ],
+                  "description": "An array of secret resources.",
+                  "name": "resources",
+                  "required": false,
+                  "type": "ARRAY"
+                },
+                {
+                  "childParameters": [
+                    {
+                      "description": "The type of resources in the resource array.",
+                      "name": "collectionType",
+                      "required": false,
+                      "type": "STRING"
+                    },
+                    {
+                      "description": "The number of elements in the resource array.",
+                      "name": "collectionTotal",
+                      "required": false,
+                      "type": "STRING"
+                    }
+                  ],
+                  "description": "The metadata that describes the resource array.",
+                  "name": "metadata",
+                  "required": false,
+                  "type": "OBJECT"
+                }
+              ],
+              "name": "root",
+              "required": false
+            },
+            "type": "JSON_ARRAY"
+          }
+        },
+        {
+          "code": "401",
+          "id": 57243,
+          "message": "Your Bluemix access token is invalid or does not have the necessary permissions to access this resource.",
+          "responseBody": {
+            "code": 0,
+            "rootParameter": {
+              "childParameters": [
+                {
+                  "childParameters": [
+                    {
+                      "description": "Error message",
+                      "name": "errorMsg",
+                      "required": true,
+                      "type": "STRING"
+                    }
+                  ],
+                  "description": "An array of resources.",
+                  "name": "resources",
+                  "required": true,
+                  "type": "ARRAY"
+                },
+                {
+                  "childParameters": [
+                    {
+                      "description": "The type of resources in the resource array.",
+                      "name": "collectionType",
+                      "required": true,
+                      "type": "STRING"
+                    },
+                    {
+                      "description": "The number of elements in the resource array.",
+                      "name": "collectionTotal",
+                      "required": true,
+                      "type": "INTEGER"
+                    }
+                  ],
+                  "description": "The metadata that describes the resource array.",
+                  "name": "metadata",
+                  "required": true,
+                  "type": "ARRAY"
+                }
+              ],
+              "name": "root",
+              "required": false
+            },
+            "type": "JSON_ARRAY"
+          }
+        }
+      ],
+      "responseContentTypes": [
+        "application/vnd.ibm.kms.secret+json"
+      ],
+      "sdkEnalbed": false,
+      "summary": "Retrieve a collection of secret resources",
+      "timestampId": 0
+    },
+    {
+      "apiGroupNameID": 158,
+      "apiNameSet": "IBM_Key_Protect_API",
+      "codeSnippets": [
+        {
+          "id": 114539,
+          "isAuto": true,
+          "languageTitle": "Go",
+          "languageType": "go",
+          "template": "package main\n\nimport (\n\t\"fmt\"\n\t\"net/http\"\n\t\"io/ioutil\"\n)\n\nfunc main() {\n\n\turl := \"https://api.ibm.com/api/v2/secrets\"\n\n\treq, _ := http.NewRequest(\"HEAD\", url, nil)\n\n\treq.Header.Add(\"bluemix-org\", \"string\")\n\treq.Header.Add(\"authorization\", \"string\")\n\treq.Header.Add(\"correlation-id\", \"string\")\n\treq.Header.Add(\"bluemix-space\", \"string\")\n\treq.Header.Add(\"accept\", \"application/json\")\n\treq.Header.Add(\"content-type\", \"application/json\")\n\n\tres, _ := http.DefaultClient.Do(req)\n\n\tdefer res.Body.Close()\n\tbody, _ := ioutil.ReadAll(res.Body)\n\n\tfmt.Println(res)\n\tfmt.Println(string(body))\n\n}"
+        },
+        {
+          "id": 114537,
+          "isAuto": true,
+          "languageTitle": "Java",
+          "languageType": "java",
+          "template": "HttpResponse<String> response = Unirest.head(\"https://api.ibm.com/api/v2/secrets\")\n  .header(\"bluemix-org\", \"string\")\n  .header(\"authorization\", \"string\")\n  .header(\"correlation-id\", \"string\")\n  .header(\"bluemix-space\", \"string\")\n  .header(\"accept\", \"application/json\")\n  .header(\"content-type\", \"application/json\")\n  .asString();"
+        },
+        {
+          "id": 114547,
+          "isAuto": true,
+          "languageTitle": "JavaScript + jQuery",
+          "languageType": "javascript_jquery",
+          "template": "var settings = {\n  \"async\": true,\n  \"crossDomain\": true,\n  \"url\": \"https://api.ibm.com/api/v2/secrets\",\n  \"method\": \"HEAD\",\n  \"headers\": {\n    \"bluemix-org\": \"string\",\n    \"authorization\": \"string\",\n    \"correlation-id\": \"string\",\n    \"bluemix-space\": \"string\",\n    \"accept\": \"application/json\",\n    \"content-type\": \"application/json\"\n  }\n}\n\n$.ajax(settings).done(function (response) {\n  console.log(response);\n});"
+        },
+        {
+          "id": 114544,
+          "isAuto": true,
+          "languageTitle": "Node",
+          "languageType": "node",
+          "template": "var http = require(\"https\");\n\nvar options = {\n  \"method\": \"HEAD\",\n  \"hostname\": \"api.ibm.com\",\n  \"port\": null,\n  \"path\": \"/api/v2/secrets\",\n  \"headers\": {\n    \"bluemix-org\": \"string\",\n    \"authorization\": \"string\",\n    \"correlation-id\": \"string\",\n    \"bluemix-space\": \"string\",\n    \"accept\": \"application/json\",\n    \"content-type\": \"application/json\"\n  }\n};\n\nvar req = http.request(options, function (res) {\n  var chunks = [];\n\n  res.on(\"data\", function (chunk) {\n    chunks.push(chunk);\n  });\n\n  res.on(\"end\", function () {\n    var body = Buffer.concat(chunks);\n    console.log(body.toString());\n  });\n});\n\nreq.end();"
+        },
+        {
+          "id": 114541,
+          "isAuto": true,
+          "languageTitle": "Python + Requests",
+          "languageType": "python_requests",
+          "template": "import requests\n\nurl = \"https://api.ibm.com/api/v2/secrets\"\n\nheaders = {\n    'bluemix-org': \"string\",\n    'authorization': \"string\",\n    'correlation-id': \"string\",\n    'bluemix-space': \"string\",\n    'accept': \"application/json\",\n    'content-type': \"application/json\"\n    }\n\nresponse = requests.request(\"HEAD\", url, headers=headers)\n\nprint(response.text)"
+        },
+        {
+          "id": 114538,
+          "isAuto": true,
+          "languageTitle": "Shell + curl",
+          "languageType": "shell_curl",
+          "template": "curl --request HEAD \\\n  --url https://api.ibm.com/api/v2/secrets \\\n  --header 'accept: application/json' \\\n  --header 'authorization: string' \\\n  --header 'bluemix-org: string' \\\n  --header 'bluemix-space: string' \\\n  --header 'content-type: application/json' \\\n  --header 'correlation-id: string'"
+        }
+      ],
+      "customHeaders": [
+        {
+          "description": "The Bluemix organization GUID.",
+          "id": 91764,
+          "name": "Bluemix-Org",
+          "required": true,
+          "type": "HEADER"
+        },
+        {
+          "description": "Your Bluemix access token.",
+          "id": 91762,
+          "name": "Authorization",
+          "required": true,
+          "type": "HEADER"
+        },
+        {
+          "description": "The v4 UUID used to correlate and track transactions.",
+          "id": 91765,
+          "name": "Correlation-Id",
+          "required": false,
+          "type": "HEADER"
+        },
+        {
+          "description": "The Bluemix space GUID.",
+          "id": 91763,
+          "name": "Bluemix-Space",
+          "required": true,
+          "type": "HEADER"
+        }
+      ],
+      "description": "<p>Returns the same HTTP headers as a GET request without returning the entity-body. This operation returns the number of secrets in your space in a header called <code>Key-Total</code>.</p>",
+      "globalAuthOverride": false,
+      "httpMethod": "HEAD",
+      "id": 15172,
+      "name": "getSecretCollectionMetadata",
+      "path": "/secrets",
+      "requestBody": {
+        "code": 0
+      },
+      "requestContentTypes": [
+        ""
+      ],
+      "responseBody": {
+        "code": 200,
+        "description": "Successfully retrieved secrets.",
+        "name": "description"
+      },
+      "responseCodes": [
+        {
+          "code": "200",
+          "example": "{ }",
+          "id": 57242,
+          "message": "The metadata was successfully retrieved.",
+          "responseBody": {
+            "code": 0,
+            "description": "The metadata was successfully retrieved.",
+            "name": "description",
+            "rootParameter": {
+              "required": false
+            }
+          }
+        },
+        {
+          "code": "401",
+          "id": 57247,
+          "message": "Your Bluemix access token is invalid or does not have the necessary permissions to access this resource.",
+          "responseBody": {
+            "code": 0,
+            "description": "Your Bluemix access token is invalid or does not have the necessary permissions to access this resource.",
+            "name": "description",
+            "rootParameter": {
+              "required": false
+            }
+          }
+        }
+      ],
+      "responseContentTypes": [
+        ""
+      ],
+      "sdkEnalbed": false,
+      "summary": "Retrieve metadata for a secret collection without fetching secrets",
+      "timestampId": 0
+    },
+    {
+      "apiGroupNameID": 158,
+      "apiNameSet": "IBM_Key_Protect_API",
+      "customHeaders": [
+        {
+          "description": "The Bluemix organization GUID.",
+          "id": 91753,
+          "name": "Bluemix-Org",
+          "required": true,
+          "type": "HEADER"
+        },
+        {
+          "description": "Your Bluemix access token.",
+          "id": 91751,
+          "name": "Authorization",
+          "required": true,
+          "type": "HEADER"
+        },
+        {
+          "description": "The v4 UUID used to correlate and track transactions.",
+          "id": 91754,
+          "name": "Correlation-Id",
+          "required": false,
+          "type": "HEADER"
+        },
+        {
+          "description": "The Bluemix space GUID.",
+          "id": 91752,
+          "name": "Bluemix-Space",
+          "required": true,
+          "type": "HEADER"
+        },
+        {
+          "description": "Alters server behavior for POST or DELETE operations. A header with `return=minimal` causes the service to return only the secret identifier, or metadata. A header containing `return=representation` returns the secret payload and metadata. ",
+          "id": 91755,
+          "name": "Prefer",
+          "possibleValue": "return=minimal, return=representation",
+          "required": false,
+          "type": "HEADER"
+        }
+      ],
+      "description": "<p>Creates a new secret with specified secret material. Key Protect may generate a new secret payload on your behalf using the <code>AlgorithmType</code> and <code>AlgorithmMetadata</code> fields if the secret material is not initially provided. When successful, <code>POST /secrets</code> returns the new secret in the response body, unless the Prefer header is set to <code>return=minimal</code>, in which case the operation will not return the secret in the response.</p>",
+      "globalAuthOverride": false,
+      "httpMethod": "POST",
+      "id": 15174,
+      "name": "createSecret",
+      "path": "/secrets",
+      "requestBody": {
+        "code": 0,
+        "name": "root",
+        "rootParameter": {
+          "childParameters": [
+            {
+              "childParameters": [
+                {
+                  "description": "Up to 30 tags can be created. Tags can be between 2-30 characters, including spaces. Special characters not permitted are angled bracket, comma, colon, ampersand, and the vertical pipe character (|).",
+                  "name": "tags",
+                  "required": false,
+                  "sampleValue": "undefined",
+                  "type": "ARRAY"
+                },
+                {
+                  "description": "The date the secret material expires.",
+                  "name": "expirationDate",
+                  "required": false,
+                  "sampleValue": "undefined",
+                  "type": "STRING"
+                },
+                {
+                  "description": "Provide the secret material or else leave blank so that Key Protect may generate one for you based on the specified algorithmType and algorithmMetadata fields.",
+                  "name": "payload",
+                  "required": false,
+                  "sampleValue": "undefined",
+                  "type": "STRING"
+                },
+                {
+                  "description": "Specifies the MIME type that represents the secret resource. Currently, only the default is supported.",
+                  "name": "type",
+                  "required": true,
+                  "sampleValue": "undefined",
+                  "type": "STRING"
+                },
+                {
+                  "description": "The algorithm type to be used when generating the secret. Currently, AES is supported.",
+                  "name": "algorithmType",
+                  "required": false,
+                  "sampleValue": "undefined",
+                  "type": "STRING"
+                },
+                {
+                  "childParameters": [
+                    {
+                      "name": "name",
+                      "required": false,
+                      "sampleValue": "undefined",
+                      "type": "STRING"
+                    },
+                    {
+                      "name": "value",
+                      "required": false,
+                      "sampleValue": "undefined",
+                      "type": "STRING"
+                    }
+                  ],
+                  "description": "The metadata for the key algorithm.",
+                  "name": "algorithmMetadata",
+                  "required": false,
+                  "type": "OBJECT"
+                },
+                {
+                  "description": "A text field used to provide a more detailed description of the secret. The maximum length is 240 characters.",
+                  "name": "description",
+                  "required": false,
+                  "sampleValue": "undefined",
+                  "type": "STRING"
+                },
+                {
+                  "description": "A human-readable, non-unique alias to assign to your secret. Max length of 100 characters.",
+                  "name": "name",
+                  "required": true,
+                  "sampleValue": "undefined",
+                  "type": "STRING"
+                }
+              ],
+              "description": "An array of resources.",
+              "name": "resources",
+              "required": false,
+              "type": "ARRAY"
+            },
+            {
+              "childParameters": [
+                {
+                  "description": "The type of resources in the resource array.",
+                  "name": "collectionType",
+                  "required": true,
+                  "sampleValue": "undefined",
+                  "type": "STRING"
+                },
+                {
+                  "description": "The number of elements in the resource array.",
+                  "name": "collectionTotal",
+                  "required": true,
+                  "sampleValue": "undefined",
+                  "type": "STRING"
+                }
+              ],
+              "description": "The metadata that describes the resource array.",
+              "name": "metadata",
+              "required": false,
+              "type": "OBJECT"
+            }
+          ],
+          "name": "root",
+          "required": false,
+          "type": "ARRAY"
+        },
+        "type": "JSON_ARRAY"
+      },
+      "requestContentTypes": [
+        "application/vnd.ibm.kms.secret+json"
+      ],
+      "requestExample": "{\n  \"metadata\": {\n     \"collectiontype\": \"application/vnd.ibm.kms.secret+json\",\n     \"collectionTotal\": 1\n  },\n  \"resources\": [{\n     \"type\": \"application/vnd.ibm.kms.secret+json\",\n     \"name\": \"testa secret\",\n     \"algorithmType\": \"AES\",\n     \"description\": \"a testing thing\",\n     \"payload\": \"My super secret secret\"\n  }]\n}",
+      "responseBody": {
+        "code": 201,
+        "description": "Successful secret creation.",
+        "name": "root",
+        "rootParameter": {
+          "childParameters": [
+            {
+              "description": "Up to 30 tags can be created. Tags can be between 2-30 characters, including spaces. Special characters not permitted are angled bracket, comma, colon, ampersand, and the vertical pipe character (|).",
+              "name": "tags",
+              "required": true,
+              "type": "ARRAY"
+            },
+            {
+              "name": "deletedBy",
+              "required": true,
+              "type": "STRING"
+            },
+            {
+              "name": "expirationDate",
+              "required": true,
+              "type": "STRING"
+            },
+            {
+              "description": "The date the secret material was destroyed.  The date is specified by RFC3339.",
+              "name": "deletionDate",
+              "required": true,
+              "type": "STRING"
+            },
+            {
+              "description": "Key state based on NIST SP 800-57",
+              "name": "state",
+              "required": true,
+              "type": "STRING"
+            },
+            {
+              "description": "Provide the secret material or else leave blank so that the service generates one based on the specified algorithmType and algorithmMetadata fields.",
+              "name": "payload",
+              "required": true,
+              "type": "STRING"
+            },
+            {
+              "description": "When an activationDate is included, the secret is created in the Pre-activation state before transitioning to the Activation state on the specified date. If no date is specified, the secret is activated immediately.  The date is specified by RFC3339.",
+              "name": "activationDate",
+              "required": true,
+              "type": "STRING"
+            },
+            {
+              "description": "A code indicating the reason the secret is not in the activation state.  The code can be translated by using one of the administration REST APIs.",
+              "name": "nonactiveStateReason",
+              "required": true,
+              "type": "INTEGER"
+            },
+            {
+              "description": "Specifies the MIME type that represents the secret resource.  Currently, only the default is supported.",
+              "name": "type",
+              "required": true,
+              "type": "STRING"
+            },
+            {
+              "name": "deleted",
+              "required": true,
+              "type": "BOOLEAN"
+            },
+            {
+              "description": "The date is specified by RFC3339 and updated when any part of the secret metadata is modified.",
+              "name": "lastUpdateDate",
+              "required": true,
+              "type": "STRING"
+            },
+            {
+              "description": "The secret identifier used to uniquely identify the resource.",
+              "name": "id",
+              "required": true,
+              "type": "STRING"
+            },
+            {
+              "name": "creationDate",
+              "required": true,
+              "type": "STRING"
+            },
+            {
+              "description": "Algorithm type to be used when generating the secret. Currently, AES is supported.",
+              "name": "algorithmType",
+              "required": true,
+              "type": "STRING"
+            },
+            {
+              "childParameters": [
+                {
+                  "name": "name",
+                  "required": true,
+                  "type": "STRING"
+                },
+                {
+                  "name": "value",
+                  "required": true,
+                  "type": "STRING"
+                }
+              ],
+              "name": "algorithmMetadata",
+              "required": true,
+              "type": "OBJECT"
+            },
+            {
+              "description": "The unique identifier for the resource that created the secret",
+              "name": "createdBy",
+              "required": true,
+              "type": "STRING"
+            },
+            {
+              "description": "Text field to provide a more detailed description of the secret. The maximum length is 240 characters.",
+              "name": "description",
+              "required": true,
+              "type": "STRING"
+            },
+            {
+              "description": "A human-readable, non-unique alias to assign to your secret.",
+              "name": "name",
+              "required": true,
+              "type": "STRING"
+            }
+          ],
+          "name": "root",
+          "required": false
+        }
+      },
+      "responseCodes": [
+        {
+          "code": "201",
+          "id": 57246,
+          "message": "The secret was successfully created.",
+          "responseBody": {
+            "code": 0,
+            "rootParameter": {
+              "childParameters": [
+                {
+                  "description": "Up to 30 tags can be created. Tags can be between 2-30 characters, including spaces. Special characters not permitted are angled bracket, comma, colon, ampersand, and the vertical pipe character (|).",
+                  "name": "tags",
+                  "required": false,
+                  "type": "ARRAY"
+                },
+                {
+                  "description": "The date the secret material expires.",
+                  "name": "expirationDate",
+                  "required": false,
+                  "type": "STRING"
+                },
+                {
+                  "description": "The unique identifier for the resource that deleted the secret.",
+                  "name": "deletedBy",
+                  "required": false,
+                  "type": "STRING"
+                },
+                {
+                  "description": "The date the secret material was destroyed. The date is specified by RFC3339.",
+                  "name": "deletionDate",
+                  "required": false,
+                  "type": "STRING"
+                },
+                {
+                  "description": "A boolean value that determines whether the key has been deleted.",
+                  "name": "deleted",
+                  "required": false,
+                  "type": "BOOLEAN"
+                },
+                {
+                  "description": "The key state based on NIST SP 800-57. States are integers and correspond to the Pre-activation = 0, Active = 1, Deactivated = 3, and Destroyed = 5 values.",
+                  "name": "state",
+                  "required": false,
+                  "type": "INTEGER"
+                },
+                {
+                  "description": "Provide the secret material or else leave blank so that Key Protect may generate one for you based on the specified algorithmType and algorithmMetadata fields.",
+                  "name": "payload",
+                  "required": false,
+                  "type": "STRING"
+                },
+                {
+                  "description": "Specifies the MIME type that represents the secret resource. Currently, only the default is supported.",
+                  "name": "type",
+                  "required": false,
+                  "type": "STRING"
+                },
+                {
+                  "description": "The date is specified by RFC3339 and updated when any part of the secret metadata is modified.",
+                  "name": "lastUpdateDate",
+                  "required": false,
+                  "type": "STRING"
+                },
+                {
+                  "description": "The secret identifier used to uniquely identify the resource.",
+                  "name": "id",
+                  "required": false,
+                  "type": "STRING"
+                },
+                {
+                  "description": "The date the secret material was created.",
+                  "name": "creationDate",
+                  "required": false,
+                  "type": "STRING"
+                },
+                {
+                  "description": "The unique identifier for the resource that created the secret.",
+                  "name": "createdBy",
+                  "required": false,
+                  "type": "STRING"
+                },
+                {
+                  "description": "Algorithm type to be used when generating the secret. Currently, AES is supported.",
+                  "name": "algorithmType",
+                  "required": false,
+                  "type": "STRING"
+                },
+                {
+                  "childParameters": [
+                    {
+                      "name": "name",
+                      "required": false,
+                      "type": "STRING"
+                    },
+                    {
+                      "name": "value",
+                      "required": false,
+                      "type": "STRING"
+                    }
+                  ],
+                  "description": "The metadata for the key algorithm.",
+                  "name": "algorithmMetadata",
+                  "required": false,
+                  "type": "OBJECT"
+                },
+                {
+                  "description": "A text field used to provide a more detailed description of the secret. The maximum length is 240 characters.",
+                  "name": "description",
+                  "required": false,
+                  "type": "STRING"
+                },
+                {
+                  "description": "A human-readable, non-unique alias to assign to your secret.",
+                  "name": "name",
+                  "required": false,
+                  "type": "STRING"
+                }
+              ],
+              "name": "root",
+              "required": false
+            },
+            "type": "JSON_ARRAY"
+          }
+        },
+        {
+          "code": "400",
+          "id": 57245,
+          "message": "The secret is missing a required field.",
+          "responseBody": {
+            "code": 0,
+            "rootParameter": {
+              "childParameters": [
+                {
+                  "childParameters": [
+                    {
+                      "description": "Error message",
+                      "name": "errorMsg",
+                      "required": true,
+                      "type": "STRING"
+                    }
+                  ],
+                  "description": "An array of resources.",
+                  "name": "resources",
+                  "required": true,
+                  "type": "OBJECT"
+                },
+                {
+                  "childParameters": [
+                    {
+                      "description": "The type of resources in the resource array.",
+                      "name": "collectionType",
+                      "required": true,
+                      "type": "STRING"
+                    },
+                    {
+                      "description": "The number of elements in the resource array.",
+                      "name": "collectionTotal",
+                      "required": true,
+                      "type": "INTEGER"
+                    }
+                  ],
+                  "description": "The metadata that describes the resource array.",
+                  "name": "metadata",
+                  "required": true,
+                  "type": "OBJECT"
+                }
+              ],
+              "name": "root",
+              "required": false
+            },
+            "type": "JSON_ARRAY"
+          }
+        },
+        {
+          "code": "401",
+          "id": 57237,
+          "message": "Your Bluemix access token is invalid or does not have the necessary permissions to access this resource.",
+          "responseBody": {
+            "code": 0,
+            "rootParameter": {
+              "childParameters": [
+                {
+                  "childParameters": [
+                    {
+                      "description": "Error message",
+                      "name": "errorMsg",
+                      "required": true,
+                      "type": "STRING"
+                    }
+                  ],
+                  "description": "An array of resources",
+                  "name": "resources",
+                  "required": true,
+                  "type": "OBJECT"
+                },
+                {
+                  "childParameters": [
+                    {
+                      "description": "The type of resources in the resource array.",
+                      "name": "collectionType",
+                      "required": true,
+                      "type": "STRING"
+                    },
+                    {
+                      "description": "The number of elements in the resource array.",
+                      "name": "collectionTotal",
+                      "required": true,
+                      "type": "INTEGER"
+                    }
+                  ],
+                  "description": "The metadata that describes the resource array.",
+                  "name": "metadata",
+                  "required": true,
+                  "type": "OBJECT"
+                }
+              ],
+              "name": "root",
+              "required": false
+            },
+            "type": "JSON_ARRAY"
+          }
+        }
+      ],
+      "responseContentTypes": [
+        ""
+      ],
+      "sdkEnalbed": false,
+      "summary": "Create a new secret",
+      "timestampId": 0
+    },
+    {
+      "apiGroupNameID": 158,
+      "apiNameSet": "IBM_Key_Protect_API",
+      "codeSnippets": [
+        {
+          "id": 114570,
+          "isAuto": true,
+          "languageTitle": "Go",
+          "languageType": "go",
+          "template": "package main\n\nimport (\n\t\"fmt\"\n\t\"net/http\"\n\t\"io/ioutil\"\n)\n\nfunc main() {\n\n\turl := \"https://api.ibm.com/api/v2/secrets/{id_string}?include_resource=true\"\n\n\treq, _ := http.NewRequest(\"DELETE\", url, nil)\n\n\treq.Header.Add(\"bluemix-org\", \"string\")\n\treq.Header.Add(\"authorization\", \"string\")\n\treq.Header.Add(\"correlation-id\", \"string\")\n\treq.Header.Add(\"bluemix-space\", \"string\")\n\treq.Header.Add(\"accept\", \"application/json\")\n\treq.Header.Add(\"content-type\", \"application/json\")\n\n\tres, _ := http.DefaultClient.Do(req)\n\n\tdefer res.Body.Close()\n\tbody, _ := ioutil.ReadAll(res.Body)\n\n\tfmt.Println(res)\n\tfmt.Println(string(body))\n\n}"
+        },
+        {
+          "id": 114563,
+          "isAuto": true,
+          "languageTitle": "Java",
+          "languageType": "java",
+          "template": "HttpResponse<String> response = Unirest.delete(\"https://api.ibm.com/api/v2/secrets/{id_string}?include_resource=true\")\n  .header(\"bluemix-org\", \"string\")\n  .header(\"authorization\", \"string\")\n  .header(\"correlation-id\", \"string\")\n  .header(\"bluemix-space\", \"string\")\n  .header(\"accept\", \"application/json\")\n  .header(\"content-type\", \"application/json\")\n  .asString();"
+        },
+        {
+          "id": 114561,
+          "isAuto": true,
+          "languageTitle": "JavaScript + jQuery",
+          "languageType": "javascript_jquery",
+          "template": "var settings = {\n  \"async\": true,\n  \"crossDomain\": true,\n  \"url\": \"https://api.ibm.com/api/v2/secrets/{id_string}?include_resource=true\",\n  \"method\": \"DELETE\",\n  \"headers\": {\n    \"bluemix-org\": \"string\",\n    \"authorization\": \"string\",\n    \"correlation-id\": \"string\",\n    \"bluemix-space\": \"string\",\n    \"accept\": \"application/json\",\n    \"content-type\": \"application/json\"\n  }\n}\n\n$.ajax(settings).done(function (response) {\n  console.log(response);\n});"
+        },
+        {
+          "id": 114562,
+          "isAuto": true,
+          "languageTitle": "Node",
+          "languageType": "node",
+          "template": "var http = require(\"https\");\n\nvar options = {\n  \"method\": \"DELETE\",\n  \"hostname\": \"api.ibm.com\",\n  \"port\": null,\n  \"path\": \"/api/v2/secrets/{id_string}?include_resource=true\",\n  \"headers\": {\n    \"bluemix-org\": \"string\",\n    \"authorization\": \"string\",\n    \"correlation-id\": \"string\",\n    \"bluemix-space\": \"string\",\n    \"accept\": \"application/json\",\n    \"content-type\": \"application/json\"\n  }\n};\n\nvar req = http.request(options, function (res) {\n  var chunks = [];\n\n  res.on(\"data\", function (chunk) {\n    chunks.push(chunk);\n  });\n\n  res.on(\"end\", function () {\n    var body = Buffer.concat(chunks);\n    console.log(body.toString());\n  });\n});\n\nreq.end();"
+        },
+        {
+          "id": 114565,
+          "isAuto": true,
+          "languageTitle": "Python + Requests",
+          "languageType": "python_requests",
+          "template": "import requests\n\nurl = \"https://api.ibm.com/api/v2/secrets/{id_string}\"\n\nquerystring = {\"include_resource\":\"true\"}\n\nheaders = {\n    'bluemix-org': \"string\",\n    'authorization': \"string\",\n    'correlation-id': \"string\",\n    'bluemix-space': \"string\",\n    'accept': \"application/json\",\n    'content-type': \"application/json\"\n    }\n\nresponse = requests.request(\"DELETE\", url, headers=headers, params=querystring)\n\nprint(response.text)"
+        },
+        {
+          "id": 114569,
+          "isAuto": true,
+          "languageTitle": "Shell + curl",
+          "languageType": "shell_curl",
+          "template": "curl --request DELETE \\\n  --url 'https://api.ibm.com/api/v2/secrets/{id_string}?include_resource=true' \\\n  --header 'accept: application/json' \\\n  --header 'authorization: string' \\\n  --header 'bluemix-org: string' \\\n  --header 'bluemix-space: string' \\\n  --header 'content-type: application/json' \\\n  --header 'correlation-id: string'"
+        }
+      ],
+      "customHeaders": [
+        {
+          "description": "The Bluemix organization GUID.",
+          "id": 91768,
+          "name": "Bluemix-Org",
+          "required": true,
+          "type": "HEADER"
+        },
+        {
+          "description": "Your Bluemix access token.",
+          "id": 91766,
+          "name": "Authorization",
+          "required": true,
+          "type": "HEADER"
+        },
+        {
+          "description": "The v4 UUID used to correlate and track transactions.",
+          "id": 91769,
+          "name": "Correlation-Id",
+          "required": false,
+          "type": "HEADER"
+        },
+        {
+          "description": "The Bluemix space GUID.",
+          "id": 91767,
+          "name": "Bluemix-Space",
+          "required": true,
+          "type": "HEADER"
+        },
+        {
+          "description": "Alters server behavior for POST or DELETE operations. A header with `return=minimal` causes the service to return only the secret identifier, or metadata. A header containing `return=representation` returns the secret payload and metadata.",
+          "id": 91770,
+          "name": "Prefer",
+          "possibleValue": "return=minimal, return=representation",
+          "required": false,
+          "type": "HEADER"
+        }
+      ],
+      "description": "Deletes a secret resource by specifying the ID of the secret.",
+      "globalAuthOverride": false,
+      "httpMethod": "DELETE",
+      "id": 15176,
+      "name": "deleteSecret",
+      "path": "/secrets/{id}",
+      "queryOrFormParameters": [
+        {
+          "description": "The ID of the secret.",
+          "id": 91771,
+          "name": "id",
+          "required": true,
+          "type": "URL"
+        }
+      ],
+      "requestBody": {
+        "code": 0
+      },
+      "requestContentTypes": [
+        ""
+      ],
+      "responseBody": {
+        "code": 200,
+        "description": "Secret successfully deleted.",
+        "name": "root",
+        "rootParameter": {
+          "childParameters": [
+            {
+              "description": "Up to 30 tags can be created. Tags can be between 2-30 characters, including spaces. Special characters not permitted are angled bracket, comma, colon, ampersand, and the vertical pipe character (|).",
+              "name": "tags",
+              "required": true,
+              "type": "ARRAY"
+            },
+            {
+              "name": "deletedBy",
+              "required": true,
+              "type": "STRING"
+            },
+            {
+              "name": "expirationDate",
+              "required": true,
+              "type": "STRING"
+            },
+            {
+              "description": "The date the secret material was destroyed.  The date is specified by RFC3339.",
+              "name": "deletionDate",
+              "required": true,
+              "type": "STRING"
+            },
+            {
+              "description": "Key state based on NIST SP 800-57",
+              "name": "state",
+              "required": true,
+              "type": "STRING"
+            },
+            {
+              "description": "Provide the secret material or else leave blank so that the service generates one based on the specified algorithmType and algorithmMetadata fields.",
+              "name": "payload",
+              "required": true,
+              "type": "STRING"
+            },
+            {
+              "description": "When an activationDate is included, the secret is created in the Pre-activation state before transitioning to the Activation state on the specified date. If no date is specified, the secret is activated immediately.  The date is specified by RFC3339.",
+              "name": "activationDate",
+              "required": true,
+              "type": "STRING"
+            },
+            {
+              "description": "A code indicating the reason the secret is not in the activation state.  The code can be translated by using one of the administration REST APIs.",
+              "name": "nonactiveStateReason",
+              "required": true,
+              "type": "INTEGER"
+            },
+            {
+              "description": "Specifies the MIME type that represents the secret resource.  Currently, only the default is supported.",
+              "name": "type",
+              "required": true,
+              "type": "STRING"
+            },
+            {
+              "name": "deleted",
+              "required": true,
+              "type": "BOOLEAN"
+            },
+            {
+              "description": "The date is specified by RFC3339 and updated when any part of the secret metadata is modified.",
+              "name": "lastUpdateDate",
+              "required": true,
+              "type": "STRING"
+            },
+            {
+              "description": "The secret identifier used to uniquely identify the resource.",
+              "name": "id",
+              "required": true,
+              "type": "STRING"
+            },
+            {
+              "name": "creationDate",
+              "required": true,
+              "type": "STRING"
+            },
+            {
+              "description": "Algorithm type to be used when generating the secret. Currently, AES is supported.",
+              "name": "algorithmType",
+              "required": true,
+              "type": "STRING"
+            },
+            {
+              "childParameters": [
+                {
+                  "name": "name",
+                  "required": true,
+                  "type": "STRING"
+                },
+                {
+                  "name": "value",
+                  "required": true,
+                  "type": "STRING"
+                }
+              ],
+              "name": "algorithmMetadata",
+              "required": true,
+              "type": "OBJECT"
+            },
+            {
+              "description": "The unique identifier for the resource that created the secret",
+              "name": "createdBy",
+              "required": true,
+              "type": "STRING"
+            },
+            {
+              "description": "Text field to provide a more detailed description of the secret. The maximum length is 240 characters.",
+              "name": "description",
+              "required": true,
+              "type": "STRING"
+            },
+            {
+              "description": "A human-readable, non-unique alias to assign to your secret.",
+              "name": "name",
+              "required": true,
+              "type": "STRING"
+            }
+          ],
+          "name": "root",
+          "required": false
+        }
+      },
+      "responseCodes": [
+        {
+          "code": "200",
+          "id": 57240,
+          "message": "The secret resource was successfully deleted.",
+          "responseBody": {
+            "code": 0,
+            "rootParameter": {
+              "childParameters": [
+                {
+                  "description": "Up to 30 tags can be created. Tags can be between 2-30 characters, including spaces. Special characters not permitted include the angled bracket, comma, colon, ampersand, and vertical pipe character (|).",
+                  "name": "tags",
+                  "required": false,
+                  "type": "ARRAY"
+                },
+                {
+                  "description": "The date the secret material expires.",
+                  "name": "expirationDate",
+                  "required": false,
+                  "type": "STRING"
+                },
+                {
+                  "description": "The unique identifier for the resource that deleted the secret.",
+                  "name": "deletedBy",
+                  "required": false,
+                  "type": "STRING"
+                },
+                {
+                  "description": "The date the secret material was destroyed. The date is specified by RFC3339.",
+                  "name": "deletionDate",
+                  "required": false,
+                  "type": "STRING"
+                },
+                {
+                  "description": "A boolean value that determines whether the key has been deleted.",
+                  "name": "deleted",
+                  "required": false,
+                  "type": "BOOLEAN"
+                },
+                {
+                  "description": "The key state based on NIST SP 800-57. States are integers and correspond to the Pre-activation = 0, Active = 1, Deactivated = 3, and Destroyed = 5 values.",
+                  "name": "state",
+                  "required": false,
+                  "type": "INTEGER"
+                },
+                {
+                  "description": "Provide the secret material or else leave blank so that Key Protect may generate one for you based on the specified algorithmType and algorithmMetadata fields.",
+                  "name": "payload",
+                  "required": false,
+                  "type": "STRING"
+                },
+                {
+                  "description": "Specifies the MIME type that represents the secret resource. Currently, only the default is supported.",
+                  "name": "type",
+                  "required": false,
+                  "type": "STRING"
+                },
+                {
+                  "description": "The date is specified by RFC3339 and updated when any part of the secret metadata is modified.",
+                  "name": "lastUpdateDate",
+                  "required": false,
+                  "type": "STRING"
+                },
+                {
+                  "description": "The secret identifier used to uniquely identify the resource.",
+                  "name": "id",
+                  "required": false,
+                  "type": "STRING"
+                },
+                {
+                  "description": "The date the secret material was created.",
+                  "name": "creationDate",
+                  "required": false,
+                  "type": "STRING"
+                },
+                {
+                  "description": "The unique identifier for the resource that created the secret.",
+                  "name": "createdBy",
+                  "required": false,
+                  "type": "STRING"
+                },
+                {
+                  "description": "The algorithm type to be used when generating the secret. Currently, AES is supported.",
+                  "name": "algorithmType",
+                  "required": false,
+                  "type": "STRING"
+                },
+                {
+                  "childParameters": [
+                    {
+                      "name": "name",
+                      "required": false,
+                      "type": "STRING"
+                    },
+                    {
+                      "name": "value",
+                      "required": false,
+                      "type": "STRING"
+                    }
+                  ],
+                  "description": "The metadata for the key algorithm.",
+                  "name": "algorithmMetadata",
+                  "required": false,
+                  "type": "OBJECT"
+                },
+                {
+                  "description": "A text field used to provide a more detailed description of the secret. The maximum length is 240 characters.",
+                  "name": "description",
+                  "required": false,
+                  "type": "STRING"
+                },
+                {
+                  "description": "A human-readable, non-unique alias to assign to your secret.",
+                  "name": "name",
+                  "required": false,
+                  "type": "STRING"
+                }
+              ],
+              "name": "root",
+              "required": false
+            },
+            "type": "JSON_ARRAY"
+          }
+        },
+        {
+          "code": "204",
+          "id": 57251,
+          "message": "The secret resource was deleted.",
+          "responseBody": {
+            "code": 0,
+            "description": "The secret resource was deleted.",
+            "name": "description",
+            "rootParameter": {
+              "required": false
+            }
+          }
+        },
+        {
+          "code": "400",
+          "id": 57241,
+          "message": "The secret resource could not be deleted due to a malformed, invalid, or missing ID.",
+          "responseBody": {
+            "code": 0,
+            "rootParameter": {
+              "childParameters": [
+                {
+                  "childParameters": [
+                    {
+                      "description": "Error message",
+                      "name": "errorMsg",
+                      "required": true,
+                      "type": "STRING"
+                    }
+                  ],
+                  "description": "An array of resources.",
+                  "name": "resources",
+                  "required": true,
+                  "type": "OBJECT"
+                },
+                {
+                  "childParameters": [
+                    {
+                      "description": "The type of resources in the resource array.",
+                      "name": "collectionType",
+                      "required": true,
+                      "type": "STRING"
+                    },
+                    {
+                      "description": "The number of elements in the resource array.",
+                      "name": "collectionTotal",
+                      "required": true,
+                      "type": "INTEGER"
+                    }
+                  ],
+                  "description": "The metadata that describes the resource array.",
+                  "name": "metadata",
+                  "required": true,
+                  "type": "OBJECT"
+                }
+              ],
+              "name": "root",
+              "required": false
+            },
+            "type": "JSON_ARRAY"
+          }
+        },
+        {
+          "code": "401",
+          "id": 57249,
+          "message": "Your Bluemix access token is invalid or does not have the necessary permissions to access this resource.",
+          "responseBody": {
+            "code": 0,
+            "rootParameter": {
+              "childParameters": [
+                {
+                  "childParameters": [
+                    {
+                      "description": "Error message",
+                      "name": "errorMsg",
+                      "required": true,
+                      "type": "STRING"
+                    }
+                  ],
+                  "description": "An array of resources.",
+                  "name": "resources",
+                  "required": true,
+                  "type": "OBJECT"
+                },
+                {
+                  "childParameters": [
+                    {
+                      "description": "The type of resources in the resource array.",
+                      "name": "collectionType",
+                      "required": true,
+                      "type": "STRING"
+                    },
+                    {
+                      "description": "The number of elements in the resource array.",
+                      "name": "collectionTotal",
+                      "required": true,
+                      "type": "INTEGER"
+                    }
+                  ],
+                  "description": "The metadata describing the resource array.",
+                  "name": "metadata",
+                  "required": true,
+                  "type": "OBJECT"
+                }
+              ],
+              "name": "root",
+              "required": false
+            },
+            "type": "JSON_ARRAY"
+          }
+        },
+        {
+          "code": "404",
+          "id": 57236,
+          "message": "The secret resource could not be found.",
+          "responseBody": {
+            "code": 0,
+            "rootParameter": {
+              "childParameters": [
+                {
+                  "childParameters": [
+                    {
+                      "description": "Error message",
+                      "name": "errorMsg",
+                      "required": true,
+                      "type": "STRING"
+                    }
+                  ],
+                  "description": "An array of resources.",
+                  "name": "resources",
+                  "required": true,
+                  "type": "OBJECT"
+                },
+                {
+                  "childParameters": [
+                    {
+                      "description": "The type of resources in the resource array.",
+                      "name": "collectionType",
+                      "required": true,
+                      "type": "STRING"
+                    },
+                    {
+                      "description": "The number of elements in the resource array.",
+                      "name": "collectionTotal",
+                      "required": true,
+                      "type": "INTEGER"
+                    }
+                  ],
+                  "description": "The metadata that describes the resource array.",
+                  "name": "metadata",
+                  "required": true,
+                  "type": "OBJECT"
+                }
+              ],
+              "name": "root",
+              "required": false
+            },
+            "type": "JSON_ARRAY"
+          }
+        }
+      ],
+      "responseContentTypes": [
+        ""
+      ],
+      "sdkEnalbed": false,
+      "summary": "Delete a secret by ID",
+      "timestampId": 0
+    },
+    {
+      "apiGroupNameID": 158,
+      "apiNameSet": "IBM_Key_Protect_API",
+      "customHeaders": [
+        {
+          "description": "Your Bluemix access token.",
+          "id": 91772,
+          "name": "Authorization",
+          "required": true,
+          "type": "HEADER"
+        },
+        {
+          "description": "The v4 UUID used to correlate and track transactions.",
+          "id": 91775,
+          "name": "Correlation-Id",
+          "required": false,
+          "type": "HEADER"
+        },
+        {
+          "description": "The Bluemix space GUID.",
+          "id": 91773,
+          "name": "Bluemix-Space",
+          "required": true,
+          "type": "HEADER"
+        },
+        {
+          "description": "The Bluemix organization GUID.",
+          "id": 91774,
+          "name": "Bluemix-Org",
+          "required": true,
+          "type": "HEADER"
+        }
+      ],
+      "description": "Retrieves a secret resource by specifying the ID of the secret.",
+      "globalAuthOverride": false,
+      "httpMethod": "GET",
+      "id": 15173,
+      "name": "getSecret",
+      "path": "/secrets/{id}",
+      "queryOrFormParameters": [
+        {
+          "description": "The ID of the secret.",
+          "id": 91776,
+          "name": "id",
+          "required": true,
+          "type": "URL"
+        }
+      ],
+      "requestBody": {
+        "code": 0
+      },
+      "requestContentTypes": [
+        ""
+      ],
+      "responseBody": {
+        "code": 200,
+        "description": "Sucessfully retrieved secret resource.",
+        "name": "root",
+        "rootParameter": {
+          "childParameters": [
+            {
+              "description": "Up to 30 tags can be created. Tags can be between 2-30 characters, including spaces. Special characters not permitted are angled bracket, comma, colon, ampersand, and the vertical pipe character (|).",
+              "name": "tags",
+              "required": true,
+              "type": "ARRAY"
+            },
+            {
+              "name": "deletedBy",
+              "required": true,
+              "type": "STRING"
+            },
+            {
+              "name": "expirationDate",
+              "required": true,
+              "type": "STRING"
+            },
+            {
+              "description": "The date the secret material was destroyed.  The date is specified by RFC3339.",
+              "name": "deletionDate",
+              "required": true,
+              "type": "STRING"
+            },
+            {
+              "description": "Key state based on NIST SP 800-57",
+              "name": "state",
+              "required": true,
+              "type": "STRING"
+            },
+            {
+              "description": "Provide the secret material or else leave blank so that the service generates one based on the specified algorithmType and algorithmMetadata fields.",
+              "name": "payload",
+              "required": true,
+              "type": "STRING"
+            },
+            {
+              "description": "When an activationDate is included, the secret is created in the Pre-activation state before transitioning to the Activation state on the specified date. If no date is specified, the secret is activated immediately.  The date is specified by RFC3339.",
+              "name": "activationDate",
+              "required": true,
+              "type": "STRING"
+            },
+            {
+              "description": "A code indicating the reason the secret is not in the activation state.  The code can be translated by using one of the administration REST APIs.",
+              "name": "nonactiveStateReason",
+              "required": true,
+              "type": "INTEGER"
+            },
+            {
+              "description": "Specifies the MIME type that represents the secret resource.  Currently, only the default is supported.",
+              "name": "type",
+              "required": true,
+              "type": "STRING"
+            },
+            {
+              "name": "deleted",
+              "required": true,
+              "type": "BOOLEAN"
+            },
+            {
+              "description": "The date is specified by RFC3339 and updated when any part of the secret metadata is modified.",
+              "name": "lastUpdateDate",
+              "required": true,
+              "type": "STRING"
+            },
+            {
+              "description": "The secret identifier used to uniquely identify the resource.",
+              "name": "id",
+              "required": true,
+              "type": "STRING"
+            },
+            {
+              "name": "creationDate",
+              "required": true,
+              "type": "STRING"
+            },
+            {
+              "description": "Algorithm type to be used when generating the secret. Currently, AES is supported.",
+              "name": "algorithmType",
+              "required": true,
+              "type": "STRING"
+            },
+            {
+              "childParameters": [
+                {
+                  "name": "name",
+                  "required": true,
+                  "type": "STRING"
+                },
+                {
+                  "name": "value",
+                  "required": true,
+                  "type": "STRING"
+                }
+              ],
+              "name": "algorithmMetadata",
+              "required": true,
+              "type": "OBJECT"
+            },
+            {
+              "description": "The unique identifier for the resource that created the secret",
+              "name": "createdBy",
+              "required": true,
+              "type": "STRING"
+            },
+            {
+              "description": "Text field to provide a more detailed description of the secret. The maximum length is 240 characters.",
+              "name": "description",
+              "required": true,
+              "type": "STRING"
+            },
+            {
+              "description": "A human-readable, non-unique alias to assign to your secret.",
+              "name": "name",
+              "required": true,
+              "type": "STRING"
+            }
+          ],
+          "name": "root",
+          "required": false
+        }
+      },
+      "responseCodes": [
+        {
+          "code": "200",
+          "id": 57244,
+          "message": "The secret resource was successfully retrieved.",
+          "responseBody": {
+            "code": 0,
+            "rootParameter": {
+              "childParameters": [
+                {
+                  "description": "Up to 30 tags can be created. Tags can be between 2-30 characters, including spaces. Special characters not permitted are angled bracket, comma, colon, ampersand, and the vertical pipe character (|).",
+                  "name": "tags",
+                  "required": false,
+                  "type": "ARRAY"
+                },
+                {
+                  "description": "The date the secret material expires.",
+                  "name": "expirationDate",
+                  "required": false,
+                  "type": "STRING"
+                },
+                {
+                  "description": "The unique identifier for the resource that deleted the secret.",
+                  "name": "deletedBy",
+                  "required": false,
+                  "type": "STRING"
+                },
+                {
+                  "description": "The date the secret material was destroyed. The date is specified by RFC3339.",
+                  "name": "deletionDate",
+                  "required": false,
+                  "type": "STRING"
+                },
+                {
+                  "description": "A boolean value that determines whether the key has been deleted.",
+                  "name": "deleted",
+                  "required": false,
+                  "type": "BOOLEAN"
+                },
+                {
+                  "description": "The key state based on NIST SP 800-57. States are integers and correspond to the Pre-activation = 0, Active = 1, Deactivated = 3, and Destroyed = 5 values.",
+                  "name": "state",
+                  "required": false,
+                  "type": "INTEGER"
+                },
+                {
+                  "description": "Provide the secret material or else leave blank so that Key Protect           may generate one for you based on the specified algorithmType and algorithmMetadata fields.",
+                  "name": "payload",
+                  "required": false,
+                  "type": "STRING"
+                },
+                {
+                  "description": "Specifies the MIME type that represents the secret resource. Currently, only the default is supported.",
+                  "name": "type",
+                  "required": false,
+                  "type": "STRING"
+                },
+                {
+                  "description": "The date is specified by RFC3339 and updated when any part of the secret metadata is modified.",
+                  "name": "lastUpdateDate",
+                  "required": false,
+                  "type": "STRING"
+                },
+                {
+                  "description": "The secret identifier used to uniquely identify the resource.",
+                  "name": "id",
+                  "required": false,
+                  "type": "STRING"
+                },
+                {
+                  "description": "The date the secret material was created.",
+                  "name": "creationDate",
+                  "required": false,
+                  "type": "STRING"
+                },
+                {
+                  "description": "The unique identifier for the resource that created the secret.",
+                  "name": "createdBy",
+                  "required": false,
+                  "type": "STRING"
+                },
+                {
+                  "description": "The algorithm type to be used when generating the secret. Currently, AES is supported.",
+                  "name": "algorithmType",
+                  "required": false,
+                  "type": "STRING"
+                },
+                {
+                  "childParameters": [
+                    {
+                      "name": "name",
+                      "required": false,
+                      "type": "STRING"
+                    },
+                    {
+                      "name": "value",
+                      "required": false,
+                      "type": "STRING"
+                    }
+                  ],
+                  "description": "The metadata for the key algorithm.",
+                  "name": "algorithmMetadata",
+                  "required": false,
+                  "type": "OBJECT"
+                },
+                {
+                  "description": "A text field used to provide a more detailed description of the secret. The maximum length is 240 characters.",
+                  "name": "description",
+                  "required": false,
+                  "type": "STRING"
+                },
+                {
+                  "description": "A human-readable, non-unique alias to assign to your secret.",
+                  "name": "name",
+                  "required": false,
+                  "type": "STRING"
+                }
+              ],
+              "name": "root",
+              "required": false
+            },
+            "type": "JSON_ARRAY"
+          }
+        },
+        {
+          "code": "400",
+          "id": 57250,
+          "message": "The secret resource could not be retrieved due to a malformed, invalid, or missing ID.",
+          "responseBody": {
+            "code": 0,
+            "rootParameter": {
+              "childParameters": [
+                {
+                  "childParameters": [
+                    {
+                      "description": "Error message",
+                      "name": "errorMsg",
+                      "required": true,
+                      "type": "STRING"
+                    }
+                  ],
+                  "description": "An array of resources",
+                  "name": "resources",
+                  "required": true,
+                  "type": "OBJECT"
+                },
+                {
+                  "childParameters": [
+                    {
+                      "description": "The type of resources in the resource array.",
+                      "name": "collectionType",
+                      "required": true,
+                      "type": "STRING"
+                    },
+                    {
+                      "description": "The number of elements in the resource array.",
+                      "name": "collectionTotal",
+                      "required": true,
+                      "type": "INTEGER"
+                    }
+                  ],
+                  "description": "The metadata that describes the resource array.",
+                  "name": "metadata",
+                  "required": true,
+                  "type": "OBJECT"
+                }
+              ],
+              "name": "root",
+              "required": false
+            },
+            "type": "JSON_ARRAY"
+          }
+        },
+        {
+          "code": "401",
+          "id": 57238,
+          "message": "Your Bluemix access token is invalid or does not have the necessary permissions to access this resource.",
+          "responseBody": {
+            "code": 0,
+            "rootParameter": {
+              "childParameters": [
+                {
+                  "childParameters": [
+                    {
+                      "description": "Error message",
+                      "name": "errorMsg",
+                      "required": true,
+                      "type": "STRING"
+                    }
+                  ],
+                  "description": "An array of resources.",
+                  "name": "resources",
+                  "required": true,
+                  "type": "OBJECT"
+                },
+                {
+                  "childParameters": [
+                    {
+                      "description": "The type of resources in the resource array.",
+                      "name": "collectionType",
+                      "required": true,
+                      "type": "STRING"
+                    },
+                    {
+                      "description": "The number of elements in the resource array.",
+                      "name": "collectionTotal",
+                      "required": true,
+                      "type": "INTEGER"
+                    }
+                  ],
+                  "description": "The metadata that describes the resource array.",
+                  "name": "metadata",
+                  "required": true,
+                  "type": "OBJECT"
+                }
+              ],
+              "name": "root",
+              "required": false
+            },
+            "type": "JSON_ARRAY"
+          }
+        },
+        {
+          "code": "404",
+          "id": 57248,
+          "message": "The secret resource could not be found. Verify that the specified secret ID is valid.",
+          "responseBody": {
+            "code": 0,
+            "rootParameter": {
+              "childParameters": [
+                {
+                  "childParameters": [
+                    {
+                      "description": "Error message",
+                      "name": "errorMsg",
+                      "required": true,
+                      "type": "STRING"
+                    }
+                  ],
+                  "description": "An array of resources.",
+                  "name": "resources",
+                  "required": true,
+                  "type": "OBJECT"
+                },
+                {
+                  "childParameters": [
+                    {
+                      "description": "The type of resources in the resource array.",
+                      "name": "collectionType",
+                      "required": true,
+                      "type": "STRING"
+                    },
+                    {
+                      "description": "The number of elements in the resource array.",
+                      "name": "collectionTotal",
+                      "required": true,
+                      "type": "INTEGER"
+                    }
+                  ],
+                  "description": "The metadata that describes the resource array.",
+                  "name": "metadata",
+                  "required": true,
+                  "type": "OBJECT"
+                }
+              ],
+              "name": "root",
+              "required": false
+            },
+            "type": "JSON_ARRAY"
+          }
+        }
+      ],
+      "responseContentTypes": [
+        "application/vnd.ibm.kms.secret+json"
+      ],
+      "sdkEnalbed": false,
+      "summary": "Retrieve a secret by ID",
+      "timestampId": 0
+    }
+  ],
+  "featureList": [
+    "DOCUMENTATATION"
+  ],
+  "groupings": [
+    {
+      "apiNameSet": "IBM Key Protect API",
+      "apiNameTags": [
+        {
+          "id": 2713
+        }
+      ],
+      "apiShortNameSet": "IBM_Key_Protect_API",
+      "id": 158
+    }
+  ],
+  "host": "ibm-key-protect.edge.bluemix.net",
+  "id": 639,
+  "imageAttachmentid": 268,
+  "imageSource": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAEAAAABACAIAAAAlC+aJAAAJl0lEQVR42u2aeVRT2R3Hn8uw2Trd7Dnt0XM6zExn6gKyqSiCUCxTl1JnFCxWwACy1nGpggiCsouC4IYirhQEFRAHRECNwQQSZEsIEkmATDAISYBAAtnt7/EYjEqtYBLhHN+5f7xA3u/ez32/+7u/7+8GeTHFL0RLdlUvVHKlVKYYlCkHlSr51APoFDVl0/0iCF8cfrTgfnvKoLx3KgHwxKyLDVsOVXwdRzKHFoqfS/gxTalSTBmAZn7ZAfy8OJIFBhBLMkuotGzvI08hgHvhhM+w0WMt/OEfnvbgpwwAq5cUTTSJIZpgowdfOl+3qVv8dNIBDMiVIrnyzb+LZT3lbUcTq5ZFP1oUS1ycUu3Y9j/8hy+Vs0RSsUKpa4B+ufJSG38f7VkwlXu+lS96YwRDcmE1N+sOK7q09Ui7sBqi6ptGLrQJAus464mtBxo7CTyRTgGCqc+Q7BokpxZt12rD6J3jtZDK5MGDSG4dcr0Oya2dX9oskCp0BPB0QGKY16Cv1mblUzsl49utZhdQX7NwoJGrI4C8Z32/KaSpd//pLdo1zvi2qjm3G9UtGOQ12OJbdATQ3C/59NX5+1kBtWNQNi4jvyqk6alZMMynHmV0624NrCYwwfun3aiHBjcuVW3jtVDUKQQAdAnBMrhWa/OgRTShWDRBAFgGZ5g883KGaRnjJIvHFksnYAQiTyiNu5XCvsIWNPUP6XofkClVjAEJo18iVaombEQoU3QOySe+C2gvG8UuqUK7ubQ20+kBeka9Swrlz8fINvfbkyXygakEIBhiZ9F9sTwihmga9WgBjffDVAJoEeAjCF+OpqLRxEUZ9a5dkzCZe/OSSFGPZwgeHHxoPAoAL+HEYyfeUFMZufnH54JJCiAalEak589z3svrEXNFDUlkW/AfDCCy4o+kjgz4jk/cZWQpbndKTp9o8MMDKFQyqQISYSlkmoI+kb6tr56tr+Eqvw37T6IbRQ8+jmgWT7IEXXa2zrmjvw7+6LQzCb6jb+eLWHl29fTDg6NGdA0gkvHP1Kw/SPg8mWLP6W0BvdvTL56+whsGt8QruqmNixEyeyu6xCMZzr5T1+es2Wlk748sw/H6ICipukWctFrncIJxSrWDUNKpOwCFSjocYUwxvRv1aH5Ve6FK+SKzpGrBlvCce5QxqizDe11xJdXc83B4eoFEqmB10yE6YW4WS1oMTSwT6AigjJV6pNJaXfImkVe9WhQas1L0ygWPqFuIr7TKpe/VOgCnq6cQz/C/6hRVYabefTLFbrwdH692ULcQXWEWlO1U8KC5vZOvFQBe7wCF3mrtE4uY48wCXGIeWahFSZPLNI/xAlx/snNU9aNeRDS3D3NGTHGm7pFVjazu3n5NAjxt78TFXPxk5fYZK7xhFerbBmw9uzqRbHG02iyauDCz0bujv2G8AEMyYe6Tf0UTTRIpi4+QzTzSHQ3sAsD4TBsf6MgjKoPG6tAYwOaQU8h8V0N7f6Of2nTrINfUde5n15Sxo2EwEw6CD58l+Fz426ZUJ0O7QMNVqGUIxHCDmLqt3XNcpVJpBsA7KgOxdAfrsx2DIAjOsPFBGZYF6dnsTM+nEOpbJjb6+hbOlR9qf+kYPG1ZEAwaJh6x9vr1NztQgKXbNoef1TCAwSq/ec7/3pVybYVvHPQEH9GgbuW5cMvB03kP+H2i10JNpUAc1fQ8paWbo6Y2sTHJFYq0fLxdQAJi5TE85X4wL1+5hoam5YHxmUCiDQDYpL7YFCLoF9Uw2Mk5ZbMcAqBXYICZgy1sS0T62fyR4iFInNtcoUlZM1p6uV7nVMFqGZCMWrtcTAxMzARfx94kzAWM+EjmnbvkRqlMvmH/qWkrvCHj0ArA5xtDmB0j0junnLL/zE3EfOvMkXHgfrE6KPj0jbIqWqvqxdziJhC7BnkNqPDNrvkHhQ1vgdzIijhf8Nu1u4AcVpSe7XbEwt0n7lLm3aoRFcHvcw4+oV0AVsfL2oF4SHq1pNLGLx4wgMHAzg9exSK3sLXHcpArJP2iJ1jFQe920+y8+o0n85biDsNkg51ZDv6IhceXLqHweFeP8KUMEugWALvobdyLRUTwZphX8Cs9iLb2AUabIwxic/XvtkCDGwO3QzMcAj9Z6TPL3n/aci/ExO18IYHS1Pq6jvsgANjafVjHCDuXj/zJBRwDRmlku91ozS5DXLwhLsFozW70I+ozvsiCzZBUl5LpyrFKAR8MYKRYLR4qrKi3wEWBR6EMEKZ+auiKt/SY7xaW/7AWi1djK+kPC4BFyecCYer1cmCA9QC+Pmt4c0UWbj6aVcLl9SrfWoP58ADYJVcomR1dQcf+A6EJoiSkIfTWZxD7/38tY5IAYNfpmw9gm0OWeJ6+ef9dizGTCgD2WhTAyjMtH/8R4CPAR4CPAJoB2BTSyuVpDwCkMABM1xoAKmgqG1naA7j/+Mny7bEzV/poGMAz8hya3jig2mXd3tRiEnVQItUsQBuXn1VK/v36PZCroomThfu3ISffYfzvBpB4pUgfZsXaCxMukPcfyijE1zZrBABU2C1C3bo9KTBH4KVgHHIn42/3Hc8q0VhVYmBQcizrrq1/AuT68BJQCWvhPu/ve9MLCbUM9vsAlFc3HUwvwDQxWihY7v1zx8BtMRfKqps0X5ljcroOpOWBjIK3bIgl95YeoMEvFRHHLJe/HeApp+vUzfsQ1sAIAKAliWW4b3Yln7hxTzGe89Zx10ZLqhohzURV1bCzzliBCmKvuIsFhDr1Ou6YAKP/yi4jr9ubAiOGWcDq1cYbQyLP34IcVhfFXdGgJON2hVvEOcR0y4hHLfcy/i4END6Jxnz7G7j3+MmOpKzfrduNqgV7f+CHL+xIziql0HV9wMHp6jmZW266NRLWAyYXYUyWuKiEzDt8tPz/OgC7k3/4wm2TrRHg6NhiBWX8l++TMksq+wYmfmDzvkdMNc3tEJFQj7JGPQpC+GzHQKedSUUk6uViIgYAN0VEqkNQIlZEQqPkEs85f/0+KbuUwX7+ngPQwBmZeEgKweSfh9JBsIOix1bkZ98FgwKGmYYGN/BRb1jXo4v1axfwIhKVKVco3793jR3ydfUICwi1FtsOg2OgFWw7XxgrVgmGG31ssZq4QdS6U0nrHRBrql8NH7PChhp/9Q5anR32KAwA9RlriLx+8VeL2ZP2mPXlziqXN7Z2uIalIYvcDLDCrYnbhpBTDUyOVK75375q5aRehWIoIGJ+5Ro6d/0eWMEyuUKl0kZX2vy1CuSSQtEgNKWWxq5tAN1c/wV3v/HPmC6/zgAAAABJRU5ErkJggg==",
+  "importVersion": "0",
+  "linkToProduct": "https://console.ng.bluemix.net/docs/services/keymgmt/index.html",
+  "lockedByEmail": "df22416f-12a8-42ab-9069-b73de6849576",
+  "lockedBySession": "38atrlUrKdWUJgnFsKU2g9z",
+  "marketPlaceList": [
+    "Security"
+  ],
+  "name": "Key Protect",
+  "namespaceList": [
+    "apiexplorer",
+    "bluemix"
+  ],
+  "providerEmail": "jhroyal@us.ibm.com",
+  "providerId": 4031,
+  "resourcePath": "https://ibm-key-protect.edge.bluemix.net/api/v2",
+  "serviceStatus": "STAGE_LIVE",
+  "showGrouping": false,
+  "status": "PRODUCTION",
+  "summary": "IBM Key Protect helps you provision encrypted keys for apps across IBM Bluemix",
+  "swippetLanguageList": [
+    {
+      "title": "JavaScript + jQuery",
+      "type": "javascript_jquery"
+    },
+    {
+      "title": "Python + Requests",
+      "type": "python_requests"
+    },
+    {
+      "title": "Shell + curl",
+      "type": "shell_curl"
+    }
+  ],
+  "tags": [
+    {
+      "id": 2713
+    }
+  ],
+  "technologyList": [
+    "bluemix"
+  ],
+  "uiUrl": "https://developer.ibm.com/api/view/id-639:title-Key_Protect",
+  "uniqueShortName": "IBM_Key_Protect_API",
+  "updated": 1497299312000,
+  "useEnabler": "DIGITAL_MARKET",
+  "version": 3,
+  "visibility": 1,
+  "whoCanEdit": [
+    "diazjf@us.ibm.com",
+    "erlander.lo@us.ibm.com",
+    "kmaeda@us.ibm.com",
+    "zac.nixon@ibm.com",
+    "brienjo@us.ibm.com",
+    "tasalasc@us.ibm.com",
+    "seguras@us.ibm.com",
+    "cnsolis@us.ibm.com",
+    "edmund.troche@us.ibm.com",
+    "crystal.barragan@ibm.com"
+  ]
+}

@@ -1,0 +1,50 @@
+//
+//  © Copyright 2017 IBM Corp. Licensed Materials – Property of IBM.
+//
+
+syntax = "proto3";
+
+package pep.core;
+option go_package = "pep";
+
+// UAAHeaders contains required authorization/authentication headers
+message UAAHeaders {
+	string token = 1;
+	string bluemix_space = 2;
+	string bluemix_org = 3;
+	string correlation_id = 4;
+}
+
+// UAAAuthnReply envelope for PEP
+message UAAAuthnReply {
+	bool authenticated = 1;
+	string error = 2;
+}
+
+// Common Authorization Request for PEP
+message AuthzRequest {
+    map<string, string> header = 1;
+    string action = 2;
+    string resource = 3;
+}
+
+// Common Authorization Reply for PEP
+message AuthzReply {
+    enum Provider {
+        UNKNOWN = 0;
+        UAA = 1;
+        IAM = 2;
+    }
+    Provider provider = 1;
+    string user_id = 2;
+    string role = 3;
+    bool allowed = 4;
+    string error = 5;
+}
+
+// PEP API service methods
+service PEPAPI {
+    rpc CheckAuthorization(AuthzRequest) returns (AuthzReply) {}
+
+	rpc UAAVerifyIdentity(UAAHeaders) returns (UAAAuthnReply) {}
+}

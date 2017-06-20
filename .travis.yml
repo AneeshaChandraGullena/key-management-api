@@ -1,0 +1,60 @@
+group: bluezone
+sudo: required
+dist: trusty
+language: go
+
+go:
+  - 1.6
+
+env:
+# set environment variable(s) for the service manifest
+  - CRN_NAME=bluemix
+
+install:
+#install pre-reqs for the service manifest tool
+  - sudo apt-get install fakeroot -y
+  - sudo apt-get install lintian -y
+# install glide
+  - go get github.com/Masterminds/glide
+# Install goling
+  - go get -u github.com/golang/lint/golint
+# Install Scanner
+  - go get github.com/HewlettPackard/gas
+
+# leave blank to prevent go get -u ./... and use glide instead
+before_script:
+  # Set config path
+  - export CONFIG_PATH=$(pwd)/config
+  - go get github.com/pierrre/gotestcover
+script:
+# update deps
+  - glide update
+# replaces go get -u ./...
+  - glide install
+# Run GoLint
+  - golint $(glide novendor)
+# Vet GoCaluate changes and report
+  - go vet -x $(glide novendor)
+  # Run the unit tests suite
+  - $GOPATH/bin/gotestcover -v -race -coverprofile=cover.out $(go list ./... | grep -v /vendor/ | grep -v scripts)
+  # Run Test Coverage
+  - go tool cover -html=cover.out -o=cover.html
+# Run Security Scan
+  - set -o pipefail && gas -skip=*/vendor/* -skip=*_test.go ./... 2>&1 | grep -v 'skipping\|scanning'
+# Run bench marks
+  - go test -bench=. -v $(glide novendor)
+# pull manifest tool code
+  - git config user.email kmstage@us.ibm.com
+  - git config user.name kmstage
+  - git stash
+  - git remote add manifest-runtime-production git@github.ibm.com:CloudTools/manifest-runtime-production.git
+  - git subtree pull --prefix=manifest manifest-runtime-production master -m "Update manifest-runtime" --squash
+# build manifest tool
+  - cd manifest
+  - make validate
+  - make package
+  - cd ..
+
+after_success:
+    - ./scripts/calculateCoverage.sh
+    - ./scripts/publishCoverage.sh

@@ -1,0 +1,74 @@
+{
+  "proxy":{
+      "dev" : "http://10.140.132.213:3128",
+      "prestaging" : "http://10.140.21.119:3128",
+      "staging" : "http://10.143.132.173:3128",
+      "production" : "http://10.143.138.153:3128"
+    },
+    "host": {
+        "name": "Key Protect API server",
+        "ipv4_address": "127.0.0.1",
+        "http": {
+            "port": 8990
+        },
+        "grpc": {
+            "port": 28991
+        },
+        "tlsServerName": "www.keyprotect.stage1.ng.bluemix.net",
+        "certBasePath": "/kp_data",
+        "certPath": "/config/cert.pem",
+        "keyPath": "/config/key.pem"
+    },
+    "lifecycleService": {
+        "name": "Key Manager gRPC service",
+        "ipv4_address": "127.0.0.1",
+        "port": 8942
+    },
+    "adminService": {
+        "name": "Key Manager admin service",
+        "ipv4_address": "127.0.0.1",
+        "port": 8976
+    },
+    "dbService": {
+        "name": "Key Manager db service",
+        "ipv4_address": "127.0.0.1",
+        "port": 8985
+    },
+    "bluemixService": {
+        "name": "Key Manager bluemix service for provisioning and BSS",
+        "ipv4_address": "127.0.0.1",
+        "port": 8982
+    },
+    "pepService": {
+        "name": "Key Management Policy Enforcement Points (PEP) service",
+        "ipv4_address": "127.0.0.1",
+        "port": 28995
+    },
+    "bluemixLoginServer": {
+        "timeout_in_ms": 1000,
+        "maxConcurrentRequests": 2,
+        "errorPercentThreshold": 25
+    },
+    "analytics": {
+        "key": "r5f9er8B1MtIYAoQH2vnflzYBq04bXqw",
+        "prefix": "KY-"
+    },
+    "rateLimiting":{
+      "amount" : 100,
+      "seconds" : 1
+    },
+    "timeouts":{
+      "readTimeout" : 3,
+      "writeTimeout" : 60,
+      "acceptableWriteTimeout" : 6,
+      "grpcTimeout" : 30
+    },
+    "version": {
+        "semver": "99.99.99",
+        "commit": "123456789",
+        "runtime": ""
+    },
+    "feature_toggles":{
+        "use_pep_service" : false
+    }
+}

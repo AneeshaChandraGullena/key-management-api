@@ -1,0 +1,458 @@
+swagger: '2.0'
+info:
+  title: IBM Key Protect API
+  description: API for the IBM Key Protect key management service.
+  version: 2.0.0
+  contact:
+    name: IBM Key Protect Service
+    url: 'https://console.ng.bluemix.net/docs/services/keymgmt/index.html'
+  license:
+    name: IBM-License
+    url: 'http://ibm.com/LICENSE-IBM'
+schemes:
+  - https
+host: ibm-key-protect.edge.bluemix.net
+basePath: /api/v2
+paths:
+  /secrets:
+    get:
+      description: >-
+        Retrieves a collection of secrets that can be paged through.
+        <br><br>
+        **Note:** `GET /secrets` will not return a secret in the response body. You can retrieve the secret payload with a subsequent `GET /secrets/{id}` request.
+      operationId: getSecrets
+      parameters:
+        - $ref: '#/parameters/AuthParam'
+        - $ref: '#/parameters/SpaceParam'
+        - $ref: '#/parameters/OrgParam'
+        - $ref: '#/parameters/CorrelationId'
+        - name: limit
+          in: query
+          type: integer
+          description: The maximum number of secrets to retrieve.
+          required: false
+        - name: offset
+          in: query
+          type: integer
+          description: The number of secrets to skip.
+          required: false
+      summary: Retrieve a collection of secret resources
+      produces:
+        - application/vnd.ibm.collection+json
+      responses:
+        '200':
+          description: The secret collection was successfully retrieved.
+          headers:
+            Key-Total:
+              description: The number of secrets in the space.
+              type: integer
+          schema:
+            $ref: '#/definitions/SecretCollection'
+        '401':
+          description: >
+            Your Bluemix access token is invalid or does not have the necessary permissions to access this resource.
+        '403':
+          description: >
+            The space ID is malformed or invalid.
+          schema:
+            $ref: '#/definitions/ErrorCollection'
+    post:
+      description: >
+        Creates a new secret with specified secret material. Key Protect may generate a new secret payload on your behalf using the AlgorithmType and AlgorithmMetadata fields if the secret material is not initially provided. When successful, `POST /secrets` returns the new secret in the response body, unless the Prefer header is set to `return=minimal`, in which case the operation will not return the secret in the response.
+      operationId: createSecret
+      consumes:
+        - application/vnd.ibm.kms.secret+json
+      parameters:
+        - $ref: '#/parameters/AuthParam'
+        - $ref: '#/parameters/SpaceParam'
+        - $ref: '#/parameters/OrgParam'
+        - $ref: '#/parameters/CorrelationId'
+        - $ref: '#/parameters/Prefer'
+        - name: secret
+          in: body
+          description: Secret resource information.
+          required: true
+          schema:
+            $ref: '#/definitions/SecretCollection'
+      summary: Create a new secret
+      responses:
+        '201':
+          description: The secret was successfully created.
+          schema:
+            $ref: '#/definitions/Secret'
+        '400':
+          description: The secret is missing a required field.
+          schema:
+            $ref: '#/definitions/ErrorCollection'
+        '401':
+          description: >
+            Your Bluemix access token is invalid or does not have the necessary permissions to access this resource.
+        '403':
+          description: >
+            The space ID is malformed or invalid.
+          schema:
+            $ref: '#/definitions/ErrorCollection'
+    head:
+      description: >-
+        Returns the same HTTP headers as a GET request without returning the entity-body. This operation returns the number of secrets in your space in a header called `Key-Total`.
+      operationId: getSecretCollectionMetadata
+      parameters:
+        - $ref: '#/parameters/AuthParam'
+        - $ref: '#/parameters/SpaceParam'
+        - $ref: '#/parameters/OrgParam'
+        - $ref: '#/parameters/CorrelationId'
+      summary: Retrieve metadata for a secret collection without fetching secrets
+      responses:
+        '200':
+          description: The metadata was successfully retrieved.
+          headers:
+            Key-Total:
+              description: The number of secrets in the space.
+              type: integer
+        '401':
+          description: >
+            Your Bluemix access token is invalid or does not have the necessary permissions to access this resource.
+        '403':
+          description: >
+            The space ID is malformed or invalid.
+  '/secrets/{id}':
+    get:
+      description: Retrieves a secret resource by specifying the ID of the secret.
+      operationId: getSecret
+      parameters:
+        - $ref: '#/parameters/AuthParam'
+        - $ref: '#/parameters/SpaceParam'
+        - $ref: '#/parameters/OrgParam'
+        - $ref: '#/parameters/CorrelationId'
+        - name: id
+          in: path
+          type: string
+          format: uuid
+          description: The v4 UUID that uniquely identifies the secret.
+          required: true
+      summary: Retrieve a secret by ID
+      produces:
+        - application/vnd.ibm.kms.secret+json
+      responses:
+        '200':
+          description: The secret resource was successfully retrieved.
+          schema:
+            $ref: '#/definitions/Secret'
+        '400':
+          description: The secret resource could not be retrieved due to a malformed, invalid, or missing ID.
+          schema:
+            $ref: '#/definitions/ErrorCollection'
+        '401':
+          description: >
+            Your Bluemix access token is invalid or does not have the necessary permissions to access this resource.
+        '403':
+          description: >
+            The space ID is malformed or invalid.
+          schema:
+            $ref: '#/definitions/ErrorCollection'
+        '404':
+          description: The secret resource could not be found. Verify that the secret ID specified is valid.
+          schema:
+            $ref: '#/definitions/ErrorCollection'
+    post:
+      description: ""
+      operationId: actionOnSecret
+      consumes:
+        - application/vnd.ibm.kms.key_action+json
+      produces:
+        - application/vnd.ibm.kms.key_action+json
+      parameters:
+        - $ref: '#/parameters/AuthParam'
+        - $ref: '#/parameters/SpaceParam'
+        - $ref: '#/parameters/OrgParam'
+        - $ref: '#/parameters/CorrelationId'
+        - $ref: '#/parameters/Prefer'
+        - name: id
+          in: path
+          description: The Customer Root Key used as the wrapping key.  It must be a v4 UUID for an active key.
+          required: true
+          type: string
+          format: uuid
+        - name: operationRequest
+          in: body
+          description: The request to perform a key wrap or unwrap operation.
+          required: true
+          schema:
+            $ref: '#/definitions/KeyAction'
+        - name: action
+          in: query
+          description: The action to perform on the specified secret.
+          required: true
+          type: string
+          enum:
+            - wrap
+            - unwrap
+      summary: Invoke an action on a specified secret
+      responses:
+        '200':
+          description: Successful secret operation.
+          schema:
+            $ref: '#/definitions/KeyAction'
+        '400':
+          description: >-
+             Your authentication data or key is invalid, or the entity-body is missing a required field.
+          schema:
+            $ref: '#/definitions/ErrorCollection'
+        '401':
+          description: >
+            Your Bluemix access token is invalid or does not have the necessary permissions to access this resource.
+        '403':
+          description: >
+            The space ID is malformed or invalid.
+          schema:
+            $ref: '#/definitions/ErrorCollection'
+    delete:
+      description: Deletes a secret resource by specifying the ID of the secret.
+      operationId: deleteSecret
+      parameters:
+        - $ref: '#/parameters/AuthParam'
+        - $ref: '#/parameters/SpaceParam'
+        - $ref: '#/parameters/OrgParam'
+        - $ref: '#/parameters/CorrelationId'
+        - $ref: '#/parameters/Prefer'
+        - name: id
+          in: path
+          type: string
+          format: uuid
+          description: The v4 UUID that uniquely identifies the secret.
+          required: true
+      summary: Delete a secret by ID
+      responses:
+        '200':
+          description: The secret resource was successfully deleted.
+          schema:
+            $ref: '#/definitions/Secret'
+        '204':
+          description: The secret resource was deleted.
+        '400':
+          description: The secret resource could not be deleted due to a malformed, invalid, or missing ID.
+          schema:
+            $ref: '#/definitions/ErrorCollection'
+        '401':
+          description: >
+            Your Bluemix access token is invalid or does not have the necessary permissions to access this resource.
+        '403':
+          description: >
+            The space ID is malformed or invalid.
+          schema:
+            $ref: '#/definitions/ErrorCollection'
+        '404':
+          description: The secret resource could not be found.
+          schema:
+            $ref: '#/definitions/ErrorCollection'
+definitions:
+  SecretCollection:
+    required:
+      - metadata
+      - resources
+    properties:
+      metadata:
+        $ref: '#/definitions/CollectionMetadata'
+      resources:
+        type: array
+        items:
+          $ref: '#/definitions/Secret'
+  CollectionMetadata:
+    required:
+      - collectionType
+      - collectionTotal
+    properties:
+      collectionType:
+        type: string
+      collectionTotal:
+        type: integer
+        format: int64
+  Secret:
+    required:
+      - type
+      - name
+    properties:
+      type:
+        description: >-
+          Specifies the MIME type that represents the secret resource.
+          Currently, only the default is supported.
+        type: string
+        default: application/vnd.ibm.kms.secret+json
+      id:
+        description: The v4 UUID used to uniquely identify the resource, as specified by RFC 4122.
+        type: string
+        format: uuid
+        readOnly: true
+      name:
+        description: A human-readable, non-unique alias to assign to your secret.
+        type: string
+        pattern: '[a-zA-Z0-9 ]{2,240}'
+        minLength: 2
+        maxLength: 240
+      creationDate:
+        type: string
+        format: date-time
+        readOnly: true
+        example: '2010-01-12T05:23:19+0000'
+      expirationDate:
+        type: string
+        format: date-time
+        example: '2010-01-12T05:23:19+0000'
+      createdBy:
+        description: The unique identifier for the resource that created the secret.
+        type: string
+        readOnly: true
+      algorithmType:
+        description: >-
+          The algorithm type to be used when generating the secret. Currently, AES
+          is supported.
+        type: string
+        enum:
+          - AES
+        default: AES
+      algorithmMetadata:
+        type: object
+      payload:
+        description: >-
+          Provide the secret material or else leave blank so that Key Protect may generate one for you based on the specified algorithmType and
+          algorithmMetadata fields.
+        type: string
+        format: binary
+      description:
+        description: >-
+          A text field used to provide a more detailed description of the secret. The
+          maximum length is 240 characters.
+        type: string
+        minLength: 2
+        maxLength: 240
+      state:
+        type: integer
+        description: The key state based on NIST SP 800-57. States are integers and correspond to the Pre-activation = 0, Active = 1, Deactivated = 3, and Destroyed = 5 values.
+        readOnly: true
+        enum:
+          - Pre-activation
+          - Activation
+          - Deactivated
+          - Destroyed
+      nonactiveStateReason:
+        description: >-
+          A code indicating the reason the secret is not in the activation
+          state.
+        type: integer
+        readOnly: true
+      deleted:
+        type: boolean
+        readOnly: true
+      activationDate:
+        description: >-
+          When an activationDate is included, Key Protect creates a secret in the
+          Pre-activation state before transitioning to the Activation state on
+          the specified date. If no date is specified, the secret is activated
+          immediately. The date is specified by RFC 3339.
+        type: string
+        format: date-time
+        example: '2010-01-12T05:23:19+0000'
+      deletionDate:
+        description: >-
+          The date the secret material was destroyed. The date is specified by
+          RFC 3339.
+        type: string
+        format: date-time
+        readOnly: true
+        example: '2010-01-12T05:23:19+0000'
+      lastUpdateDate:
+        description: >-
+          The date is specified by RFC 3339 and updated when any part of the
+          secret metadata is modified.
+        type: string
+        format: date-time
+        readOnly: true
+        example: '2010-01-12T05:23:19+0000'
+      deletedBy:
+        type: string
+        readOnly: true
+      tags:
+        description: >-
+          Up to 30 tags can be created. Tags can be between 2-30 characters, including spaces. Special characters not permitted include the angled bracket,
+          comma, colon, ampersand, and vertical pipe character (|).
+        type: array
+        items:
+          type: string
+      extractable:
+        description: >-
+          A boolean value that determines if the secret payload can be returned to clients. Once set to `false` it cannot be changed to `true`.
+        type: boolean
+        default: true
+      crn:
+        description: The Cloud Resource Name (CRN) that uniquely identifies your cloud network resources.
+        type: string
+
+  KeyAction:
+    description: The base request for key actions.
+    type: object
+    properties:
+      plaintext:
+        type: string
+        description: >-
+          Used for wrap actions when the query parameter is set to `wrap`. Plaintext is also returned as a property in the entity-body when you perform an `unwrap` action on a secret. In addition, plaintext may be returned when you perform a wrap action on a secret without specifying a plaintext, in which case Key Protect generates a random plaintext (32 bytes) and wraps that value.
+        minLength: 32
+        maxLength: 4096
+      aad:
+        type: string
+        format: byte
+        description: Additional authentication data.
+      ciphertext:
+        type: string
+        description: >-
+          Used for wrap actions when the query parameter is set to `unwrap`. Ciphertext is also returned as a property in the entity-body when you perform a `wrap` action on a secret.
+  Error:
+    properties:
+      errorMsg:
+        type: string
+  ErrorCollection:
+    required:
+      - metadata
+      - resources
+    properties:
+      metadata:
+        $ref: '#/definitions/CollectionMetadata'
+      resources:
+        type: array
+        items:
+          $ref: '#/definitions/Error'
+parameters:
+  AuthParam:
+    name: Authorization
+    in: header
+    type: string
+    format: byte
+    description: Your Bluemix access token.
+    required: true
+  OrgParam:
+    name: Bluemix-Org
+    in: header
+    type: string
+    description: The Bluemix organization GUID.
+    required: true
+  SpaceParam:
+    name: Bluemix-Space
+    in: header
+    type: string
+    description: The Bluemix space GUID.
+    required: true
+  CorrelationId:
+    name: Correlation-Id
+    in: header
+    type: string
+    format: uuid
+    description: The v4 UUID used to correlate and track transactions.
+    required: false
+  Prefer:
+    name: Prefer
+    in: header
+    description: >-
+      Alters server behavior for POST or DELETE operations. A header with `return=minimal` causes the service to return only the secret identifier, or metadata. A header containing `return=representation` returns the secret payload and metadata in the entity-body.
+      <br><br>
+      **Note:** During POST operations, Key Protect may not immediately return the secret payload due to key generation time. To retrieve the secret payload, you can perform a subsequent `GET /secrets/{id}` request.
+    required: false
+    type: string
